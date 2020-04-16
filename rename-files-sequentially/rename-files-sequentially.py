@@ -15,6 +15,7 @@ def ask_for_input(question):
 
     return response
 
+
 def verify_provided_inputs(from_dir, to_dir, filename_prefix, starting_sequence, seq_num_digits):
 
     if not path.isdir(from_dir):
@@ -41,10 +42,29 @@ def verify_provided_inputs(from_dir, to_dir, filename_prefix, starting_sequence,
 
     return True
 
+
 def rename_and_move_file(from_dir, to_dir, filename_prefix, starting_sequence, seq_num_digits):
 
-    for filename in sorted(os.listdir(from_dir):
-        print filename
+
+    for filename in sorted(os.listdir(from_dir)):
+        file_extension = get_file_extension(filename)
+        new_filename = filename_prefix + get_sequence_value(starting_sequence, seq_num_digits) + "." + file_extension
+        starting_sequence += 1
+        print new_filename
+
+
+def get_file_extension(filename):
+    return filename.split(".")[-1]
+
+
+def get_sequence_value(sequence, num_of_seq_digits):
+    seq_str = str(sequence)
+
+    while len(seq_str) < num_of_seq_digits:
+        seq_str = "0" + seq_str
+
+    return seq_str
+
 
 if __name__ == '__main__':
     from_dir = ask_for_input("Enter directory that you want to rename the files.\n")

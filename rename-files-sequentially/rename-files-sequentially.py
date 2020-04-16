@@ -41,6 +41,11 @@ def verify_provided_inputs(from_dir, to_dir, filename_prefix, starting_sequence,
 
     return True
 
+def rename_and_move_file(from_dir, to_dir, filename_prefix, starting_sequence, seq_num_digits):
+
+    for filename in sorted(os.listdir(from_dir):
+        print filename
+
 if __name__ == '__main__':
     from_dir = ask_for_input("Enter directory that you want to rename the files.\n")
     to_dir = ask_for_input("Enter directory where you want to move the files to.\n")
@@ -48,4 +53,16 @@ if __name__ == '__main__':
     starting_sequence = ask_for_input("Specify starting sequence number.\n")
     seq_num_digits = ask_for_input("Number of digits for the sequence number between (1 to 10).\n")
 
+    print "--------------------------------------------------------\n"
     isResponsesValid = verify_provided_inputs(from_dir, to_dir, filename_prefix, starting_sequence, seq_num_digits)
+    print "Input verification...PASSED\n"
+    print "--------------------------------------------------------\n"
+
+    starting_sequence = int(starting_sequence)
+    seq_num_digits = int(seq_num_digits)
+
+    print "--------------------------------------------------------\n"
+    print "Renaming and moving files..."
+    rename_and_move_file(from_dir, to_dir, filename_prefix, starting_sequence, seq_num_digits)
+    print "Rename and move files...COMPLETE"
+    print "--------------------------------------------------------\n"

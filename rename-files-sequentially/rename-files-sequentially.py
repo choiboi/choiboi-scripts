@@ -16,14 +16,14 @@ def ask_for_input(question):
     return response
 
 
-def verify_provided_inputs(from_dir, to_dir, filename_prefix, starting_sequence, seq_num_digits):
+def verify_provided_inputs(source_dir, dest_dir, filename_prefix, starting_sequence, seq_num_digits):
 
-    if not path.isdir(from_dir):
-        print "Directory {} does not exist.".format(from_dir)
+    if not path.isdir(source_dir):
+        print "Source directory {} does not exist.".format(source_dir)
         return False
 
-    if not path.isdir(to_dir):
-        print "Directory {} does not exist.".format(to_dir)
+    if not path.isdir(dest_dir):
+        print "Destination directory {} does not exist.".format(dest_dir)
         return False
     
     try:
@@ -45,12 +45,12 @@ def verify_provided_inputs(from_dir, to_dir, filename_prefix, starting_sequence,
     return True
 
 
-def rename_and_move_file(from_dir, to_dir, filename_prefix, starting_sequence, seq_num_digits):
+def rename_and_move_file(source_dir, dest_dir, filename_prefix, starting_sequence, seq_num_digits):
 
-    for filename in sorted(os.listdir(from_dir)):
+    for filename in sorted(os.listdir(source_dir)):
         file_extension = get_file_extension(filename)
-        source_file = from_dir + filename
-        destination_file = to_dir + filename_prefix + get_sequence_value(starting_sequence, seq_num_digits) + "." + file_extension
+        source_file = source_dir + filename
+        destination_file = dest_dir + filename_prefix + get_sequence_value(starting_sequence, seq_num_digits) + "." + file_extension
         starting_sequence += 1
         os.rename(source_file, destination_file)
 
@@ -69,27 +69,32 @@ def get_sequence_value(sequence, num_of_seq_digits):
 
 
 if __name__ == '__main__':
-    from_dir = ask_for_input("Enter directory that you want to rename the files.\n")
-    to_dir = ask_for_input("Enter directory where you want to move the files to.\n")
+    source_dir = ask_for_input("Enter source directory.\n")
+    dest_dir = ask_for_input("Enter destination directory.\n")
     filename_prefix = ask_for_input("Specify new filename prefix.\n")
     starting_sequence = ask_for_input("Specify starting sequence number.\n")
     seq_num_digits = ask_for_input("Number of digits for the sequence number between (1 to 10).\n")
 
     print "--------------------------------------------------------"
-    isResponsesValid = verify_provided_inputs(from_dir, to_dir, filename_prefix, starting_sequence, seq_num_digits)
-    print "Input verification...PASSED"
-    print "--------------------------------------------------------\n"
+    isResponsesValid = verify_provided_inputs(source_dir, dest_dir, filename_prefix, starting_sequence, seq_num_digits)
+    if isResponsesValid:
+        print "Input verification...PASSED"
+        print "--------------------------------------------------------\n"
 
-    starting_sequence = int(starting_sequence)
-    seq_num_digits = int(seq_num_digits)
-    if not from_dir.endswith("/"):
-        from_dir += "/"
-    if not to_dir.endswith("/"):
-        to_dir += "/"
+        starting_sequence = int(starting_sequence)
+        seq_num_digits = int(seq_num_digits)
+        if not source_dir.endswith("/"):
+            source_dir += "/"
+        if not dest_dir.endswith("/"):
+            dest_dir += "/"
 
 
-    print "--------------------------------------------------------"
-    print "Renaming and moving files..."
-    rename_and_move_file(from_dir, to_dir, filename_prefix, starting_sequence, seq_num_digits)
-    print "Rename and move files...COMPLETE"
-    print "--------------------------------------------------------\n"
+        print "--------------------------------------------------------"
+        print "Renaming and moving files..."
+        rename_and_move_file(source_dir, dest_dir, filename_prefix, starting_sequence, seq_num_digits)
+        print "Rename and move files...COMPLETE"
+        print "--------------------------------------------------------\n"
+
+    else:
+        print "Input verification...FAILED"
+        print "--------------------------------------------------------\n"

@@ -69,8 +69,8 @@ def get_sequence_value(sequence, num_of_seq_digits):
 
 
 if __name__ == '__main__':
-    source_dir = ask_for_input("Enter source directory.\n")
-    dest_dir = ask_for_input("Enter destination directory.\n")
+    source_dir = ask_for_input("Enter source directory.\n").strip()
+    dest_dir = ask_for_input("Enter destination directory.\n").strip()
     filename_prefix = ask_for_input("Specify new filename prefix.\n")
     starting_sequence = ask_for_input("Specify starting sequence number.\n")
     seq_num_digits = ask_for_input("Number of digits for the sequence number between (1 to 10).\n")

@@ -27,7 +27,9 @@ def verify_provided_inputs(from_dir, to_dir, filename_prefix, starting_sequence,
         return False
     
     try:
-        int(starting_sequence)
+        starting_sequence = int(starting_sequence)
+        if starting_sequence < 0:
+            print "Starting sequence number must be greater than 0."
     except ValueError:
         print "Starting sequence number must be an Integer."
         return False

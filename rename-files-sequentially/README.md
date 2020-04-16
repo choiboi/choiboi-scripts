@@ -13,31 +13,31 @@ input the source directory if you like.
 * Filename prefix, the name you want to use before the numbers.
 * Starting sequence number, sequence number you want start from.
 * Number digits for the sequence number, if the number is greater than
-the number of digits of the sequence number, then "0" are appended to
+the number of digits of the sequence number, then ```0``` are appended to
 the front.
 
-Example:  
+**EXAMPLE:**  
 **Filename Prefix:** RAW-IMAGE-  
 **Starting Sequence Number:** 1  
 **Number of digits for Sequence Number:** 4  
 **Resulting filenames:**  
 RAW-IMAGE-0001  
-RAW-IMAGE-0002
+RAW-IMAGE-0002  
 ...  
-RAW-IMAGE-0010
+RAW-IMAGE-0010  
 ...  
-RAW-IMAGE-0100
+RAW-IMAGE-0100  
 ...  
 
-Example:  
+**EXAMPLE:**  
 **Filename Prefix:** RAW-IMAGE-  
 **Starting Sequence Number:** 1  
 **Number of digits for Sequence Number:** 2  
 **Resulting filenames:**  
 RAW-IMAGE-01  
-RAW-IMAGE-02
+RAW-IMAGE-02  
 ...  
-RAW-IMAGE-10
+RAW-IMAGE-10  
 ...  
-RAW-IMAGE-100
+RAW-IMAGE-100  
 ...  

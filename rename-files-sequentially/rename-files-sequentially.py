@@ -45,12 +45,12 @@ def verify_provided_inputs(from_dir, to_dir, filename_prefix, starting_sequence,
 
 def rename_and_move_file(from_dir, to_dir, filename_prefix, starting_sequence, seq_num_digits):
 
-
     for filename in sorted(os.listdir(from_dir)):
         file_extension = get_file_extension(filename)
-        new_filename = filename_prefix + get_sequence_value(starting_sequence, seq_num_digits) + "." + file_extension
+        source_file = from_dir + filename
+        destination_file = to_dir + filename_prefix + get_sequence_value(starting_sequence, seq_num_digits) + "." + file_extension
         starting_sequence += 1
-        print new_filename
+        os.rename(source_file, destination_file)
 
 
 def get_file_extension(filename):
@@ -73,15 +73,20 @@ if __name__ == '__main__':
     starting_sequence = ask_for_input("Specify starting sequence number.\n")
     seq_num_digits = ask_for_input("Number of digits for the sequence number between (1 to 10).\n")
 
-    print "--------------------------------------------------------\n"
+    print "--------------------------------------------------------"
     isResponsesValid = verify_provided_inputs(from_dir, to_dir, filename_prefix, starting_sequence, seq_num_digits)
-    print "Input verification...PASSED\n"
+    print "Input verification...PASSED"
     print "--------------------------------------------------------\n"
 
     starting_sequence = int(starting_sequence)
     seq_num_digits = int(seq_num_digits)
+    if not from_dir.endswith("/"):
+        from_dir += "/"
+    if not to_dir.endswith("/"):
+        to_dir += "/"
 
-    print "--------------------------------------------------------\n"
+
+    print "--------------------------------------------------------"
     print "Renaming and moving files..."
     rename_and_move_file(from_dir, to_dir, filename_prefix, starting_sequence, seq_num_digits)
     print "Rename and move files...COMPLETE"

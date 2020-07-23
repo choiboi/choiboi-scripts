@@ -46,8 +46,9 @@ def verify_provided_inputs(source_dir, dest_dir, filename_prefix, starting_seque
 
 
 def rename_and_move_file(source_dir, dest_dir, filename_prefix, starting_sequence, seq_num_digits):
+    file_list = sorted(os.listdir(source_dir))
 
-    for filename in sorted(os.listdir(source_dir)):
+    for filename in file_list:
         file_extension = get_file_extension(filename)
         source_file = source_dir + filename
         destination_file = dest_dir + filename_prefix + get_sequence_value(starting_sequence, seq_num_digits) + "." + file_extension

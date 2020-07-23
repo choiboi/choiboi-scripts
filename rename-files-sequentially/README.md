@@ -1,7 +1,7 @@
 Rename filename Sequentially
 ============================
 
-Basically this script will go through all the files sorted by name
+Basically this script will go through all the files sorted alphabetically
 in the provided source directory. Then it will rename and append a 
 number to the end of the filenames and move to the destination
 directory.

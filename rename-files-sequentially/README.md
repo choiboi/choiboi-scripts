@@ -6,6 +6,11 @@ in the provided source directory. Then it will rename and append a
 number to the end of the filenames and move to the destination
 directory.
 
+**NOTE:**  
+This script will ignore ```.DS_Store``` file. To change or modify files
+to ignore, modify the ```IGNORE_FILENAMES``` list to customize which files
+you want the script to ignore. Must be exact filenames.  
+
 When the script is executed, it will ask for the following input:  
 * Source directory containing the files you want to rename and/or move.  
 * Destination directory where you want to move the files to, you can

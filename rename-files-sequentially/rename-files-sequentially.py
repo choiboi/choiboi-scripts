@@ -8,6 +8,8 @@
 import os
 from os import path
 
+IGNORE_FILENAMES = ['.DS_Store']
+
 def ask_for_input(question):
     response = ""
     while response == "":
@@ -49,11 +51,12 @@ def rename_and_move_file(source_dir, dest_dir, filename_prefix, starting_sequenc
     file_list = sorted(os.listdir(source_dir))
 
     for filename in file_list:
-        file_extension = get_file_extension(filename)
-        source_file = source_dir + filename
-        destination_file = dest_dir + filename_prefix + get_sequence_value(starting_sequence, seq_num_digits) + "." + file_extension
-        starting_sequence += 1
-        os.rename(source_file, destination_file)
+        if filename not in IGNORE_FILENAMES:
+            file_extension = get_file_extension(filename)
+            source_file = source_dir + filename
+            destination_file = dest_dir + filename_prefix + get_sequence_value(starting_sequence, seq_num_digits) + "." + file_extension
+            starting_sequence += 1
+            os.rename(source_file, destination_file)
 
 
 def get_file_extension(filename):
